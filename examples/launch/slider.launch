@@ -1,0 +1,17 @@
+<launch>
+     <arg name="gui" default="true" />
+
+     <param name="robot_description" command="$(find xacro)/xacro '$(find closed_sot)/examples/urdf/four_bar_linkage.urdf.xacro'" />
+     <param name="use_gui" value="$(arg gui)"/>
+     <param name="rate" value="50.0"/>
+     
+        
+     <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui">
+     <param name="publish_default_efforts" value="True"/>
+     </node>
+
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen" >
+        <param name="publish_frequency" type="double" value="250.0" />
+    </node> 
+
+</launch>
