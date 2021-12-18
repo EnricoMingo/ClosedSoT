@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="four_bar_linkage">
+
+<xacro:include filename="$(find closed_sot)/utils/srdf/utils.srdf.xacro" />
+    
+<group name="base">
+	<link name="base_link"/>
+</group>
+
+<xacro:planar_linkage base_frame="base_link" open_frame_a="frame0" open_frame_b="frame1"/>
+
+<group name="chains">
+        <group name="base_link_to_frame0"/>
+        <group name="base_link_to_frame1"/>
+</group>
+
+<group_state name="home" group="chains">
+    <joint name="Joint1" value="0.0"/>
+    <joint name="Joint2" value="0.0"/>
+    <joint name="Joint3" value="0.0"/>
+</group_state>
+
+</robot>

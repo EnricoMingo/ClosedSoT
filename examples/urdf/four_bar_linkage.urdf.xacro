@@ -7,7 +7,7 @@
 <xacro:property name="m" value="1." />
 <xacro:property name="PI" value="3.1415" />
 
-<link name="link0"/>
+<link name="world"/>
 
 <link name="base_link">
 	<inertial>
@@ -96,8 +96,8 @@
 <link name="frame0"/>
 <link name="frame1"/>
 
-<joint name="Joint0" type="fixed">
-	<parent link="link0"/>
+<joint name="base_joint" type="fixed">
+	<parent link="world"/>
 	<child link="base_link"/>
 	<origin rpy="0 0 0" xyz="0 0 0"/>
 </joint>

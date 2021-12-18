@@ -1,0 +1,25 @@
+solver_options:
+    regularization: 1e-3
+    back_end: "qpoases"
+
+stack:
+    - ["Postural"]
+    
+constraints: ["JointLimits", "planar_linkage"]
+
+JointLimits:
+    type: "JointLimits"
+
+planar_linkage:
+    lib_name: libCartesioClosedSoT.so
+    type: "PlanarLinkage"
+    base_link: "frame0"
+    distal_link: "frame1"
+    lambda: 0.1
+
+Postural:
+    type: "Postural"
+    lambda: 0.1
+    disabled_joints:
+        - Joint2
+        - Joint3

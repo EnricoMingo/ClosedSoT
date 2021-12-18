@@ -44,7 +44,8 @@ include_directories(include
     ${catkin_INCLUDE_DIRS})
     
 add_library(ClosedSoT SHARED
-    src/tasks/velocity/ClosedChain.cpp)
+    src/tasks/velocity/ClosedChain.cpp
+    src/tasks/LinkageFactory.cpp)
 
 target_link_libraries(ClosedSoT
     ${catkin_LIBRARIES} ${OpenSoT_LIBRARIES} ${VISP_LIBRARIES})
@@ -56,7 +57,8 @@ install(TARGETS ClosedSoT
         )
 
 add_library(CartesioClosedSoT SHARED
-                cartesio/tasks/velocity/ClosedChain.cpp)
+                cartesio/tasks/velocity/ClosedChain.cpp
+                cartesio/tasks/velocity/PlanarLinkage.cpp)
 
 target_link_libraries(CartesioClosedSoT ClosedSoT ${cartesian_interface_LIBRARIES} ${catkin_LIBRARIES})
 

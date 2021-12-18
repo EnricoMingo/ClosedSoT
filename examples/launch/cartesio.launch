@@ -1,0 +1,47 @@
+<launch>
+    <!-- LOAD URDF AND SRDF IN PARAM SERVER -->
+    <param name="robot_description" command=" $(find xacro)/xacro --inorder '$(find closed_sot)/examples/urdf/four_bar_linkage.urdf.xacro'"/>
+    <param name="robot_description_semantic" command=" $(find xacro)/xacro --inorder '$(find closed_sot)/examples/srdf/four_bar_linkage.srdf.xacro'"/>
+         
+    <!-- LOAD STACK IN PARAM SERVER -->
+    <param name="cartesian/problem_description" textfile="$(find closed_sot)/examples/stack/four_bar_linkage.stack"/>
+    
+    <!-- RUN CARTESI/O -->
+    <arg name="solver" default="OpenSot"/>
+    <arg name="prefix" default=""/>
+    <arg name="use_xbot_config" default="false"/>
+    <arg name="verbosity" default="2"/>
+    <arg name="rate" default="500.0"/>
+    <arg name="tf_prefix" default="ci"/>
+    <arg name="markers" default="true"/>
+    <arg name="namespace" default=""/> <!-- dummy argument avoids pass_all_args error in parent launch file -->
+    <arg name="robot" default=""/>
+    <arg name="is_model_floating_base" default="false"/>
+       
+    
+    <node pkg="cartesian_interface" type="ros_server_node" 
+                                    name="ros_server_node" 
+                                    required="true" 
+                                    output="screen" 
+                                    launch-prefix="$(arg prefix)">
+                                    
+        <param name="is_model_floating_base" value="$(arg is_model_floating_base)"/>
+        <param name="model_type" value="RBDL"/>
+        <param name="solver" value="$(arg solver)"/>
+        <param name="use_xbot_config" value="$(arg use_xbot_config)"/>
+        <param name="verbosity" value="$(arg verbosity)"/>
+        <param name="rate" value="$(arg rate)"/>
+        <param name="tf_prefix" value="$(arg tf_prefix)"/>
+        
+    </node>
+
+    <!-- node pkg="tf" type="static_transform_publisher" name="world_static_transform" args="0 0 0 0 0 0 ci/world odometry/world 100" /-->
+    
+    <!-- RUN POSTURAL GUI -->
+    <node pkg="cartesian_interface" type="postural_gui" name="postural_gui"/>
+    
+    <!-- RVIZ -->
+    <node type="rviz" name="rviz" pkg="rviz" args="-d $(find kangaroo_full_model)/rviz/cartesio.rviz"/>
+            
+
+</launch>

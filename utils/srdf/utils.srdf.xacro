@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+<!-- 
+	planar_linkage: creates two chain groups named "${base_frame}_to_{open_frame_a}" and "${base_frame}_to_{open_frame_b}" 
+		params: 
+			base_frame: common frame of the two open chain in the planar linkage
+			open_frame_a: final frame of first open chain
+			open_frame_b: final frame of second open chain
+-->
+<xacro:macro name="planar_linkage" params="base_frame open_frame_a open_frame_b">
+
+<group name="${base_frame}_to_${open_frame_a}">
+	<chain base_link="${base_frame}" tip_link="${open_frame_a}"/>
+</group>
+
+<group name="${base_frame}_to_${open_frame_b}">
+	<chain base_link="${base_frame}" tip_link="${open_frame_b}"/>
+</group>
+
+</xacro:macro>
+
+</robot>
+
+
+
