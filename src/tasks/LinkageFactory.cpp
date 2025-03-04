@@ -26,7 +26,5 @@ OpenSoT::Task<Eigen::MatrixXd, Eigen::VectorXd>::TaskPtr LinkageFactory::createP
     if(constrained_dofs.size() == 3)
         throw std::runtime_error("Overconstrained! Can not create a Planar linkage!");
 
-    Eigen::VectorXd q(robot.getJointNum());
-    q.setZero();
-    return std::make_shared<velocity::ClosedChain>(q, robot, distal_link, base_link, constrained_dofs);
+    return std::make_shared<velocity::ClosedChain>(robot, distal_link, base_link, constrained_dofs);
 }

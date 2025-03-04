@@ -25,8 +25,7 @@ namespace velocity{
          * @param base_link the name of the base link as expressed in the robot urdf.
          * @param rowIndices between 0 to 5, meaning 0:2 position and 3:5 orientation
          */
-        ClosedChain(const Eigen::VectorXd& x,
-                    XBot::ModelInterface &robot,
+        ClosedChain(XBot::ModelInterface &robot,
                     const std::string& distal_link,
                     const std::string& base_link,
                     const std::list<unsigned int> rowIndices);
@@ -44,7 +43,7 @@ namespace velocity{
          */
         OpenSoT::SubTask::Ptr _sub_task;
 
-        virtual void _update(const Eigen::VectorXd &x);
+        virtual void _update();
 
     };
 }

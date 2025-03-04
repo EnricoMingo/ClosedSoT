@@ -53,10 +53,7 @@ ClosedSotClosedChainAdapter::ClosedSotClosedChainAdapter(TaskDescription::Ptr ci
 
 TaskPtr ClosedSotClosedChainAdapter::constructTask()
 {
-    Eigen::VectorXd q;
-    _model->getJointPosition(q);
-
-    _closedsot_cc = std::make_shared<CSoT>(q, const_cast<ModelInterface&>(*_model),
+    _closedsot_cc = std::make_shared<CSoT>(const_cast<ModelInterface&>(*_model),
                                             _ci_cc->getDistalLink(), _ci_cc->getBaseLink(), _ci_cc->getIndices());
     _closedsot_cc->cartesian_task->setLambda(_ci_cc->getLambda());
 

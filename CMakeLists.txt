@@ -5,7 +5,7 @@
 cmake_minimum_required(VERSION 3.0)
 project(closed_sot VERSION 1.0.0)
 
-add_compile_options(-std=c++11)
+add_compile_options(-std=c++17)
 
 option(COMPILE_TESTS "Compile tests" FALSE)
 

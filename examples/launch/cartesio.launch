@@ -26,7 +26,7 @@
                                     launch-prefix="$(arg prefix)">
                                     
         <param name="is_model_floating_base" value="$(arg is_model_floating_base)"/>
-        <param name="model_type" value="RBDL"/>
+        <param name="model_type" value="pin"/>
         <param name="solver" value="$(arg solver)"/>
         <param name="use_xbot_config" value="$(arg use_xbot_config)"/>
         <param name="verbosity" value="$(arg verbosity)"/>
